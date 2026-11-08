@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Access Blocked!!!</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+
+    .screen {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #firstScreen {
+      display: grid;
+      place-items: center;
+    }
+
+    .first-background,
+    .second-background {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .first-background {
+      z-index: 0;
+    }
+
+    .first-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .popup {
+      position: relative;
+      z-index: 2;
+      width: min(380px, 75vw);
+      padding: 2px;
+      border: 2px solid rgba(255, 255, 255, 0);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0);
+      color: #ffffff00;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .popup:hover {
+      transform: scale(1.04);
+      border-color: #ffffff00;
+    }
+
+    .popup img {
+      display: block;
+      width: 100%;
+      max-height: 55vh;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .popup p {
+      margin: 12px 4px 2px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    #secondScreen {
+      background: #000;
+    }
+
+    #secondScreen,
+    #secondScreen * {
+      cursor: none !important;
+    }
+
+    .second-background {
+      z-index: 0;
+    }
+
+    .second-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.38),
+        transparent 35%,
+        transparent 65%,
+        rgba(0, 0, 0, 0.48)
+      );
+      pointer-events: none;
+    }
+
+    .alert-box {
+      position: absolute;
+      z-index: 2;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(500px, calc(100% - 32px));
+      padding: 15px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 10px;
+      background: rgba(20, 20, 20, 0.82);
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .alert-box h2 {
+      margin: 0 0 6px;
+      font-size: 25px;
+    }
+
+    .alert-box p {
+      margin: 0;
+      color: #ddd;
+      font-size: 25px;
+      line-height: 1.5;
+    }
+
+    .bottom-description {
+      position: absolute;
+      z-index: 2;
+      bottom: 16%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(320px, calc(100% - 36px));
+      text-align: center;
+      background: rgba(20, 20, 20, 0.966);
+      font-size: clamp(16px, 2.5vw, 22px);
+      line-height: 1.5;
+      text-shadow: 0 2px 8px #000;
+    }
+
+    #flashScreen {
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: #000;
+      animation: flashEffect 0.35s steps(2, end) infinite;
+    }
+
+    #flashScreen p {
+      margin: 0;
+      font-size: clamp(200px, 6vw, 56px);
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes flashEffect {
+      0%, 49% {
+        background: #f00000;
+        color: #000;
+      }
+
+      50%, 100% {
+        background: #000;
+        color: #fff;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .alert-box {
+        top: 16px;
+        padding: 12px 14px;
+      }
+
+      .alert-box h2 {
+        font-size: 18px;
+      }
+
+      .bottom-description {
+        bottom: 7%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="firstScreen" class="screen">
+    <img class="first-background" src="Virtual Fitness Coaching at Home.png" alt="">
+    <div class="first-overlay"></div>
+
+    <button id="popupButton" class="popup" type="button">
+      <img src="file_00000000e140821194d1f92dcb655b61.png" alt="Click to continue">
+      <p></p>
+    </button>
+  </main>
+
+  <main id="secondScreen" class="screen hidden">
+    <video
+      id="backgroundVideo"
+      class="second-background"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="download (1).mp4" type="video/mp4">
+      Your browser does not support HTML video.
+    </video>
+
+    <div class="second-overlay"></div>
+
+    <section class="alert-box" role="status">
+      <h2>Call +1-855-623-1974 immideately!!!</h2>
+      <p></p>
+    </section>
+
+    <p class="bottom-description">
+    
+    </p>
+  </main>
+
+  <audio id="backgroundAudio" loop preload="auto">
+      <source src="TTSOL-en-US-Aria-20261104-123730.mp3" type="audio/mpeg">
+    </audio>
+
+  <main id="flashScreen" class="screen hidden" aria-live="polite">
+    <p>WARNING!!!</p>
+  </main>
+
+  <script>
+    // Disable the browser's right-click context menu.
+    document.addEventListener("contextmenu", event => {
+      event.preventDefault();
+    });
+
+    const firstScreen = document.getElementById("firstScreen");
+    const secondScreen = document.getElementById("secondScreen");
+    const flashScreen = document.getElementById("flashScreen");
+    const popupButton = document.getElementById("popupButton");
+    const backgroundVideo = document.getElementById("backgroundVideo");
+
+    popupButton.addEventListener("click", async () => {
+      firstScreen.classList.add("hidden");
+      flashScreen.classList.remove("hidden");
+
+      try {
+        await document.documentElement.requestFullscreen();
+      } catch (error) {
+        console.warn("Fullscreen could not be started:", error);
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 2500));
+
+      flashScreen.classList.add("hidden");
+      secondScreen.classList.remove("hidden");
+
+      // Start the muted looping video when the second screen appears.
+      try {
+        backgroundVideo.currentTime = 0;
+        await backgroundVideo.play();
+      } catch (error) {
+        console.warn("Video autoplay could not be started:", error);
+      }
+
+      try {
+        await backgroundAudio.play();
+      } catch (error) {
+        console.warn("Audio playback could not be started:", error);
+      }
+    });
+  </script>
+</body>
+</html>
